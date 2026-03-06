@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tasarım Ödevi</title>
+    
+    <style>
+        
+        h1, h2, p {
+            font-family: Arial, sans-serif;
+            margin-top: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        /* 2. YATAY MENÜ (display: inline-block) ve
+           HİYERARŞİK SEÇİCİ (Gereksinim) */
+        nav {
+            background-color: #2c3e50;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        /* Hiyerarşik Seçici 1 */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+      
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        /* Hiyerarşik Seçici 2 */
+        nav ul li a {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        /* Hover Efekti (Gereksinim) */
+        nav ul li a:hover {
+            color: #f307df;
+        }
+
+        /* 3. HEADER ALANI */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            border-bottom: 2px solid #bdc3c7;
+        }
+
+        header h1 {
+            color: #2c3e50;
+        }
+
+        header p {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 18px;
+        }
+
+        /* 4. İKİ SÜTUNLU YAPI (Display Mantığı) */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            font-size: 0; /* inline-block'un yarattığı boşluğu sıfırlamak için */
+        }
+
+        /* Kutuları yan yana getirme (Gereksinim) */
+        .content, .sidebar {
+            display: inline-block;
+            vertical-align: top;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .content {
+            width: 65%;
+            margin-right: 3%; /* Aradaki boşluk */
+        }
+
+        .sidebar {
+            width: 32%;
+        }
+
+        
+        .container p {
+            font-size: 15px;         /* 1. Özellik */
+            color: #555555;          /* 2. Özellik */
+            line-height: 1.6;        /* 3. Özellik */
+            text-align: justify;     
+        }
+
+        /* 6. FOOTER ALANI */
+        footer {
+            background-color: #39dc07;
+            color: #0c0c0c;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #050505;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">İçerik</a></li>
+            <li><a href="#">Yan Menü/Bilgi</a></li>
+            <li><a href="#">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Sistem ve Ağ Yönetimi Temelleri</h1>
+        <p>Modern altyapı mimarileri ve ağ protokolleri üzerine temel kavramlar.</p>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <h2>DevOps Kültürü ve Süreçleri</h2>
+            <p>DevOps, yazılım geliştirme (Dev) ile bilişim teknolojileri operasyonlarını (Ops) birleştiren, iletişimi ve işbirliğini vurgulayan bir kültürdür. Amacı, sistem geliştirme yaşam döngüsünü kısaltmak ve yüksek kalitede sürekli teslimat sağlamaktır.</p>
+            <p>Süreç içerisinde Kubernetes, Docker ve çeşitli CI/CD araçları kullanılarak otomasyon sağlanır. Böylece hem geliştirme hızı artar hem de sunucu tarafındaki hata payı minimize edilir.</p>
+        </main>
+
+        <aside class="sidebar">
+            <h2>Network Tasarımı</h2>
+            <p>Bir ağın tasarımı, veri paketlerinin yönlendirilmesi ve sunucular arası güvenli iletişimin sağlanması açısından kritik bir öneme sahiptir.</p>
+            <p>Ölçeklenebilir ağ protokolleri ve doğru yapılandırılmış topolojiler, sistemlerin kesintisiz çalışabilmesi için altyapının temelini oluşturur.</p>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Web Tasarım Ödevi. Tüm hakları saklıdır.</p>
+    </footer>
+
+</body>
+</html>
+
