@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Lab Ödevi - Muhammed Berat Öner</title>
+    <style>
+        /* Genel Reset ve Dark Tema Hazırlığı */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Apple sistem fontları */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0d1117; /* Koyu arka plan */
+            color: #c9d1d9;
+        }
+
+        /* --- ZORUNLU KONTROL LİSTESİ --- */
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* 1) Navbar - 10vh (Cam Efekti) */
+        .navbar {
+            height: 10vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #30363d;
+            padding: 0 40px;
+        }
+
+        .navbar .logo {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #58a6ff, #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar .links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #58a6ff;
+        }
+
+        /* 2) Hero - 30vh */
+        .hero {
+            height: 30vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch; /* Hoca özellikle bunu istiyor */
+            background: radial-gradient(circle at top left, #161b22, #0d1117);
+            padding: 30px 40px;
+            gap: 30px;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 26px;
+            color: #ffffff;
+        }
+
+        .hero-text p {
+            color: #8b949e;
+            line-height: 1.5;
+        }
+
+        .hero-text button {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: #58a6ff;
+            color: #0d1117;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-text button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.4);
+        }
+
+        /* FOTOĞRAF ALANI (TAM KARE) */
+        .hero-image {
+            align-self: center; /* Stretch kuralını sadece bu kutu için ezip kare yapıyoruz */
+            height: calc(30vh - 60px);
+            width: calc(30vh - 60px);
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #21262d, #161b22);
+            border: 1px solid #30363d;
+            border-radius: 16px; /* Modern oval köşeler */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden; /* Fotoğrafın köşelerden taşmasını engeller */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fotoğrafı sündürmeden kareye tam oturtur */
+        }
+
+        /* 3) Kartlar Bölümü - 30vh */
+        .cards {
+            height: 30vh;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background-color: #010409;
+            padding: 20px 40px;
+        }
+
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 150px;
+            font-weight: 600;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #58a6ff;
+        }
+
+        /* 4) Flex Grow Uygulama - 20vh */
+        .flex-grow-section {
+            height: 20vh;
+            display: flex;
+            align-items: stretch;
+            gap: 15px;
+            background-color: #0d1117;
+            padding: 15px 40px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .box1 { background-color: #238636; flex-grow: 1; } /* DevOps Yeşili */
+        .box2 { background-color: #1f6feb; flex-grow: 2; } /* Apple Mavisi */
+        .box3 { background-color: #238636; flex-grow: 1; }
+
+        /* 5) Footer - 10vh */
+        .footer {
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #010409;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        
+        <nav class="navbar">
+            <div class="logo">Berat</div>
+            <div class="links">
+                <a href="#">Hakkımda</a>
+                <a href="#">Sistem</a>
+                <a href="#">Projeler</a>
+                <a href="#">İletişim</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Sistem Programlama & Ağ Mimarisi</h1>
+                <p>Apple Teknik Uzmanı | Marmara Üniversitesi Bilgisayar Mühendisliği Öğrencisi. DevOps süreçleri, ağ protokolleri ve Chaos Engineering üzerine çalışmalar.</p>
+                <button>Sistemleri Keşfet</button>
+            </div>
+            <div class="hero-image">
+                <img src="foto_ben.jpg" alt="Muhammed Berat Öner">
+            </div>
+        </section>
+
+        <section class="cards">
+            <div class="card">Docker & Kubernetes Mimarisi</div>
+            <div class="card">Kali Linux ile Ağ Güvenliği</div>
+            <div class="card">Cisco Packet Tracer Testleri</div>
+            <div class="card">Chaos Mesh ile Hata Enjeksiyonu</div>
+            <div class="card">Tüketici Hakları Mobil Uygulaması</div>
+            <div class="card">Motosiklet Tutkusu</div>
+        </section>
+
+        <section class="flex-grow-section">
+            <div class="box box1">Altyapı (flex: 1)</div>
+            <div class="box box2">DevOps Süreçleri (flex: 2)</div>
+            <div class="box box3">Optimizasyon (flex: 1)</div>
+        </section>
+
+        <footer class="footer">
+            <p>171421009 - Muhammed Berat Öner © 2026</p>
+        </footer>
+
+    </div>
+</body>
+</html>
